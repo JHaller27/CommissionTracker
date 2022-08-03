@@ -1,0 +1,40 @@
+[gd_scene format=2]
+
+[node name="IncomeItem" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+size_flags_horizontal = 3
+
+[node name="TypeOptionButton" type="OptionButton" parent="HBoxContainer"]
+margin_right = 109.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Commission"
+items = [ "Commission", null, false, 0, null, "Tip", null, false, 1, null ]
+selected = 0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 113.0
+margin_top = 5.0
+margin_right = 121.0
+margin_bottom = 19.0
+text = "$"
+
+[node name="AmountLineEdit" type="LineEdit" parent="HBoxContainer"]
+margin_left = 125.0
+margin_right = 266.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+placeholder_text = "420.69"
+
+[node name="NoteLineEdit" type="LineEdit" parent="HBoxContainer"]
+margin_left = 270.0
+margin_right = 412.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+placeholder_text = "Note"
