@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using CommissionTracker;
 using Godot;
 
 public class DayEdit : Control
@@ -27,22 +29,24 @@ public class DayEdit : Control
 		set => this.CommissionPercentageNode.Value = (double)value;
 	}
 
+	public decimal CommissionMultiplier => this.CommissionPercentage / 100;
+
 	public decimal CommissionTotal
 	{
 		get => decimal.Parse(this.CommissionTotalNode.Text);
-		set => this.CommissionTotalNode.Text = value.ToString();
+		set => this.CommissionTotalNode.Text = value.ToString("0.00");
 	}
 
 	public decimal TipsTotal
 	{
 		get => decimal.Parse(this.TipsTotalNode.Text);
-		set => this.TipsTotalNode.Text = value.ToString();
+		set => this.TipsTotalNode.Text = value.ToString("0.00");
 	}
 
 	public decimal GrandTotal
 	{
 		get => decimal.Parse(this.GrandTotalNode.Text);
-		set => this.GrandTotalNode.Text = value.ToString();
+		set => this.GrandTotalNode.Text = value.ToString("0.00");
 	}
 
 	// Node proxies
@@ -51,6 +55,7 @@ public class DayEdit : Control
 	private Label CommissionTotalNode => this.GetNode<Label>("Panel/MarginContainer/VBoxContainer/TotalGrid/CommissionValue/Value");
 	private Label TipsTotalNode => this.GetNode<Label>("Panel/MarginContainer/VBoxContainer/TotalGrid/TipsValue/Value");
 	private Label GrandTotalNode => this.GetNode<Label>("Panel/MarginContainer/VBoxContainer/TotalGrid/GrandTotalValue/Value");
+	private JobsContainer JobsContainer => this.GetNode<JobsContainer>("Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer");
 
 	// Methods
 	public override void _Ready()
@@ -63,8 +68,17 @@ public class DayEdit : Control
 		this.RecalculateTotals();
 	}
 
+	public override void _Process(float delta)
+	{
+		this.RecalculateTotals();
+	}
+
 	private void RecalculateTotals()
 	{
+		this.CommissionTotal = this.JobsContainer.GetJobValuesOfType(JobType.Commission)
+			.Aggregate(decimal.Zero, (acc, curr) => acc + curr * this.CommissionMultiplier);
+		this.TipsTotal = this.JobsContainer.GetJobValuesOfType(JobType.Tip).Sum();
+
 		this.GrandTotal = this.CommissionTotal + this.TipsTotal;
 	}
 }
