@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 public class JobsContainer : VBoxContainer
 {
@@ -8,6 +9,7 @@ public class JobsContainer : VBoxContainer
 	{
 		Node jobItemNode = _jobItemScene.Instance();
 		this.AddChild(jobItemNode);
+		jobItemNode.Connect("DeleteMe", this, nameof(DeleteJob), new Array(jobItemNode));
 	}
 
 	public override void _Ready()
@@ -16,5 +18,10 @@ public class JobsContainer : VBoxContainer
 		{
 			this.RemoveChild(child);
 		}
+	}
+
+	public void DeleteJob(JobItem jobNode)
+	{
+		this.RemoveChild(jobNode);
 	}
 }
