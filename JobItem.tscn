@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://JobItem.cs" type="Script" id=1]
+[ext_resource path="res://trash-can-icon.png" type="Texture" id=2]
 
 [node name="IncomeItem" type="VBoxContainer"]
 anchor_right = 1.0
@@ -11,14 +12,16 @@ script = ExtResource( 1 )
 margin_right = 412.0
 margin_bottom = 24.0
 
-[node name="DeleteButton" type="Button" parent="HBoxContainer"]
-margin_right = 22.0
+[node name="DeleteButton" type="TextureButton" parent="HBoxContainer"]
+margin_right = 24.0
 margin_bottom = 24.0
-text = "D"
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource( 2 )
 
 [node name="TypeOptionButton" type="OptionButton" parent="HBoxContainer"]
-margin_left = 26.0
-margin_right = 153.0
+margin_left = 28.0
+margin_right = 154.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "Commission"
@@ -26,7 +29,7 @@ items = [ "Commission", null, false, 0, null, "Tip", null, false, 1, null ]
 selected = 0
 
 [node name="AmountEdit" type="SpinBox" parent="HBoxContainer"]
-margin_left = 157.0
+margin_left = 158.0
 margin_right = 412.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
