@@ -1,15 +1,21 @@
 [gd_scene format=2]
 
-[node name="IncomeItem" type="Control"]
+[node name="IncomeItem" type="VBoxContainer"]
 anchor_right = 1.0
-anchor_bottom = 1.0
+margin_bottom = 24.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_right = 1.0
-size_flags_horizontal = 3
+margin_right = 412.0
+margin_bottom = 24.0
+
+[node name="DeleteButton" type="Button" parent="HBoxContainer"]
+margin_right = 22.0
+margin_bottom = 24.0
+text = "D"
 
 [node name="TypeOptionButton" type="OptionButton" parent="HBoxContainer"]
-margin_right = 109.0
+margin_left = 26.0
+margin_right = 149.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "Commission"
@@ -17,24 +23,28 @@ items = [ "Commission", null, false, 0, null, "Tip", null, false, 1, null ]
 selected = 0
 
 [node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 113.0
+margin_left = 153.0
 margin_top = 5.0
-margin_right = 121.0
+margin_right = 161.0
 margin_bottom = 19.0
 text = "$"
 
 [node name="AmountLineEdit" type="LineEdit" parent="HBoxContainer"]
-margin_left = 125.0
-margin_right = 266.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-placeholder_text = "420.69"
-
-[node name="NoteLineEdit" type="LineEdit" parent="HBoxContainer"]
-margin_left = 270.0
+margin_left = 165.0
 margin_right = 412.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+placeholder_text = "420.69"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="NoteLineEdit" type="LineEdit" parent="."]
+margin_top = 28.0
+margin_right = 412.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 placeholder_text = "Note"
+caret_blink = true
+caret_blink_speed = 0.5
