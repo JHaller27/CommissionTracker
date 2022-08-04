@@ -53,11 +53,11 @@ margin_right = 392.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
-[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/TitleVBox/CommissionHBox/ValueHBox"]
+[node name="CommissionSpinBox" type="SpinBox" parent="Panel/MarginContainer/VBoxContainer/TitleVBox/CommissionHBox/ValueHBox"]
 margin_right = 178.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
-placeholder_text = "40"
+step = 0.1
 
 [node name="PercentLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TitleVBox/CommissionHBox/ValueHBox"]
 margin_left = 182.0
@@ -119,12 +119,23 @@ size_flags_horizontal = 3
 text = "Commission total"
 align = 2
 
-[node name="CommissionTotalValue" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
+[node name="CommissionValue" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
 margin_left = 201.0
 margin_right = 392.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "$123.45"
+
+[node name="Currency" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid/CommissionValue"]
+margin_right = 8.0
+margin_bottom = 14.0
+text = "$"
+
+[node name="Value" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid/CommissionValue"]
+margin_left = 12.0
+margin_right = 191.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "123.45"
 
 [node name="TipsTotalLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
 margin_top = 18.0
@@ -134,13 +145,24 @@ size_flags_horizontal = 3
 text = "Tips total"
 align = 2
 
-[node name="TipsTotalValue" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
+[node name="TipsValue" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
 margin_left = 201.0
 margin_top = 18.0
 margin_right = 392.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
-text = "$69.00"
+
+[node name="Currency" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid/TipsValue"]
+margin_right = 8.0
+margin_bottom = 14.0
+text = "$"
+
+[node name="Value" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid/TipsValue"]
+margin_left = 12.0
+margin_right = 191.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "123.45"
 
 [node name="TotalLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
 margin_top = 36.0
@@ -150,10 +172,21 @@ size_flags_horizontal = 3
 text = "Grand total"
 align = 2
 
-[node name="TotalValue" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
+[node name="GrandTotalValue" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
 margin_left = 201.0
 margin_top = 36.0
 margin_right = 392.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
-text = "$420.69"
+
+[node name="Currency" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid/GrandTotalValue"]
+margin_right = 8.0
+margin_bottom = 14.0
+text = "$"
+
+[node name="Value" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid/GrandTotalValue"]
+margin_left = 12.0
+margin_right = 191.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "123.45"
