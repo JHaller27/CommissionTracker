@@ -6,7 +6,7 @@ using Godot.Collections;
 
 public class JobsContainer : VBoxContainer
 {
-	private static PackedScene _jobItemScene = ResourceLoader.Load<PackedScene>("res://JobItem.tscn");
+	private static PackedScene _jobItemScene = ResourceLoader.Load<PackedScene>("res://Scenes/JobItem.tscn");
 
 	public override void _Ready()
 	{

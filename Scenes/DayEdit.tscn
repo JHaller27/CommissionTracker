@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://JobItem.tscn" type="PackedScene" id=1]
-[ext_resource path="res://DayEdit.cs" type="Script" id=2]
-[ext_resource path="res://JobsContainer.cs" type="Script" id=3]
-[ext_resource path="res://DefaultTheme.tres" type="Theme" id=4]
+[ext_resource path="res://Scenes/JobItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/JobsContainer.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/DayEdit.cs" type="Script" id=3]
+[ext_resource path="res://ThemeResources/DefaultTheme.tres" type="Theme" id=4]
 
 [node name="DayEdit" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 4 )
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -77,7 +77,7 @@ size_flags_vertical = 3
 margin_right = 392.0
 margin_bottom = 102.0
 size_flags_horizontal = 3
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="IncomeItem" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
