@@ -35,7 +35,9 @@ public class JobItem : VBoxContainer
 
 	public override void _Ready()
 	{
-
+		LineEdit le = this.ValueNode.GetLineEdit();
+		le.GrabFocus();
+		le.Text = string.Empty;
 	}
 
 	private void _on_DeleteButton_pressed()

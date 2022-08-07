@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CommissionTracker;
 using Godot;
-using Godot.Collections;
 
 public class JobsContainer : VBoxContainer
 {
@@ -20,7 +19,7 @@ public class JobsContainer : VBoxContainer
 	{
 		Node jobItemNode = _jobItemScene.Instance();
 		this.AddChild(jobItemNode);
-		jobItemNode.Connect("DeleteMe", this, nameof(DeleteJob), new Array(jobItemNode));
+		jobItemNode.Connect("DeleteMe", this, nameof(DeleteJob), new(jobItemNode));
 	}
 
 	public void DeleteJob(JobItem jobNode)
