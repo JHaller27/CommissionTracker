@@ -36,7 +36,9 @@ margin_bottom = 29.0
 [node name="DayButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 margin_top = 33.0
 margin_right = 392.0
-margin_bottom = 54.0
+margin_bottom = 849.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "Day"
 script = ExtResource( 2 )
 ChangeToScene = "res://Scenes/DayEdit.tscn"
