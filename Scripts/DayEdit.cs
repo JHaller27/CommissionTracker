@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using CommissionTracker;
+using CommissionTracker.SaveModels;
 using Godot;
 
 public class DayEdit : Control
@@ -97,4 +98,29 @@ public class DayEdit : Control
 		this.ScrollContainer.ScrollVertical = int.MaxValue;
 		this.MaxScroll = (int)this.ScrollBar.MaxValue;
 	}
+
+	public DayModel Export()
+	{
+		return new()
+		{
+			Commission = this.CommissionPercentage,
+			Date = this.Date.GetDateSaveString(),
+			Jobs = this.JobsContainer.Export(),
+		};
+	}
+
+	public void Import(DayModel model)
+	{
+		this.CommissionPercentage = model.Commission;
+		this.Date = Utils.DateFromSaveString(model.Date);
+		this.JobsContainer.Import(model.Jobs);
+	}
+
+	private void UpdateDetected()
+	{
+		SaveUtils.SaveDay(this);
+	}
+
+	private void CommissionUpdated(float value) => this.UpdateDetected();
+	private void JobsListChanged() => this.UpdateDetected();
 }

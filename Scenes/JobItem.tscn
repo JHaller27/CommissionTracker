@@ -47,6 +47,7 @@ rect_min_size = Vector2( 0, 26 )
 scroll_vertical_enabled = false
 
 [node name="NoteLineEdit" type="LineEdit" parent="ScrollContainer"]
+unique_name_in_owner = true
 margin_right = 412.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
@@ -59,3 +60,6 @@ caret_blink = true
 caret_blink_speed = 0.5
 
 [connection signal="pressed" from="HBoxContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/TypeOptionButton" to="." method="JobTypeChanged"]
+[connection signal="value_changed" from="HBoxContainer/AmountEdit" to="." method="AmountChanged"]
+[connection signal="text_changed" from="ScrollContainer/NoteLineEdit" to="." method="NoteChanged"]

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CommissionTracker;
+using CommissionTracker.SaveModels;
 using Godot;
 
 public class JobItem : VBoxContainer
@@ -27,11 +28,14 @@ public class JobItem : VBoxContainer
 
 	// Node proxies
 	private SpinBox ValueNode => this.GetNode<SpinBox>("HBoxContainer/AmountEdit");
-	private LineEdit NoteNode => this.GetNode<LineEdit>("NoteLineEdit");
+	private LineEdit NoteNode => this.GetNode<LineEdit>("%NoteLineEdit");
 	private OptionButton TypeNode => this.GetNode<OptionButton>("HBoxContainer/TypeOptionButton");
 
 	[Signal]
 	public delegate void DeleteMe();
+
+	[Signal]
+	public delegate void Changed();
 
 	public override void _Ready()
 	{
@@ -40,8 +44,26 @@ public class JobItem : VBoxContainer
 		le.Text = string.Empty;
 	}
 
-	private void _on_DeleteButton_pressed()
+	public JobItemModel Export()
 	{
-		EmitSignal(nameof(DeleteMe));
+		return new()
+		{
+			Amount = this.Value,
+			JobType = this.JobType,
+			Note = this.Note,
+		};
 	}
+
+	public void Import(JobItemModel model)
+	{
+		this.Value = model.Amount;
+		this.JobType = model.JobType;
+		this.Note = model.Note;
+	}
+
+	private void _on_DeleteButton_pressed() => EmitSignal(nameof(DeleteMe));
+
+	private void AmountChanged(float value) => EmitSignal(nameof(Changed));
+	private void NoteChanged(string newText) => EmitSignal(nameof(Changed));
+	private void JobTypeChanged() => EmitSignal(nameof(Changed));
 }
