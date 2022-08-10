@@ -9,7 +9,7 @@ public class ChangeSceneButton : Button
 		this.Connect("pressed", this, nameof(ChangeScene));
 	}
 
-	private void ChangeScene()
+	protected virtual void ChangeScene()
 	{
 		this.GetTree().ChangeScene(this.ChangeToScene);
 	}

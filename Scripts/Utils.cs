@@ -6,7 +6,7 @@ namespace CommissionTracker
 	public static class Utils
 	{
 		private const string DateSaveFormat = "yyMMdd";
-		private const string DateDisplayFormat = "d, MMMM yyyy";
+		private const string DateDisplayFormat = "MMMM d, yyyy";
 
 		public static string GetDateSaveString(this DateTime dateTime)
 		{

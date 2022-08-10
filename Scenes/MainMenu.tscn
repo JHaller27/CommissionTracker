@@ -33,10 +33,28 @@ margin_top = 25.0
 margin_right = 392.0
 margin_bottom = 29.0
 
-[node name="DayButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer"]
 margin_top = 33.0
 margin_right = 392.0
 margin_bottom = 849.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
+
+[node name="DaySelectionButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+margin_right = 392.0
+margin_bottom = 403.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Choose Day"
+script = ExtResource( 2 )
+ChangeToScene = "res://Scenes/SelectDay.tscn"
+
+[node name="DayButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 413.0
+margin_right = 392.0
+margin_bottom = 816.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Day"

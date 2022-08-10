@@ -16,7 +16,7 @@ public class DayEdit : Control
 		}
 		set
 		{
-			string text = value.ToString("MMMM dd, yyyy");
+			string text = value.GetDateDisplayString();
 			this.DateTitleNode.Text = text;
 		}
 	}
@@ -66,15 +66,27 @@ public class DayEdit : Control
 	// Methods
 	public override void _Ready()
 	{
-		this.Date = DateTime.Now;
-		this.CommissionPercentage = 40;
-
-		this.CommissionTotal = (decimal)100.34;
-		this.TipsTotal = 20;
-		this.RecalculateTotals();
-
 		this.ScrollBar.Connect("changed", this, nameof(ScrollToBottom));
 		this.MaxScroll = (int)this.ScrollBar.MaxValue;
+
+		this.Date = DateTime.Today;
+		if (GlobalContext.LoadDate != null)
+		{
+			this.Date = (DateTime)GlobalContext.LoadDate;
+		}
+
+		if (SaveUtils.ListDays().Contains(this.Date))
+		{
+			DayModel model = SaveUtils.LoadDay(this.Date);
+			this.Import(model);
+			this.RecalculateTotals();
+		}
+		else
+		{
+			this.CommissionPercentage = 40;
+		}
+
+		this.RecalculateTotals();
 	}
 
 	public override void _Process(float delta)

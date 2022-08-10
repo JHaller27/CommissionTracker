@@ -24,6 +24,18 @@ namespace CommissionTracker
 			AddDay(dayEditScene.Date);
 		}
 
+		public static DayModel LoadDay(DateTime dateTime)
+		{
+			File file = new();
+			file.Open(GetDaySavePath(dateTime), File.ModeFlags.Read);
+			string json = file.GetAsText();
+			file.Close();
+
+			DayModel model = JsonConvert.DeserializeObject<DayModel>(json);
+
+			return model;
+		}
+
 		private static string GetDaySavePath(DateTime dateTime)
 		{
 			string dateString = dateTime.GetDateSaveString();
