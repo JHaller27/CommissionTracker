@@ -55,11 +55,22 @@ namespace CommissionTracker
 			file.Close();
 		}
 
+		public static void RemoveDay(DateTime date)
+		{
+			HashSet<DateTime> dates = ListDays().ToHashSet();
+			dates.Remove(date);
+			SaveDayList(dates);
+		}
+
 		private static void AddDay(DateTime dateTime)
 		{
 			HashSet<DateTime> dates = ListDays().ToHashSet();
 			dates.Add(dateTime);
+			SaveDayList(dates);
+		}
 
+		private static void SaveDayList(IEnumerable<DateTime> dates)
+		{
 			File file = new();
 			file.Open(ListOfDaysPath, File.ModeFlags.Write);
 			foreach (DateTime date in dates)

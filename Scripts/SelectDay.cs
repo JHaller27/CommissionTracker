@@ -4,7 +4,7 @@ using Godot;
 
 public class SelectDay : Control
 {
-	private static PackedScene _daySelectionScene = ResourceLoader.Load<PackedScene>("res://Scenes/DaySelectionButton.tscn");
+	private static PackedScene _daySelectionScene = ResourceLoader.Load<PackedScene>("res://Scenes/DaySelectionItem.tscn");
 
 	private Node ButtonList => this.GetNode("%ButtonList");
 
@@ -12,10 +12,17 @@ public class SelectDay : Control
 	{
 		foreach (DateTime date in SaveUtils.ListDays())
 		{
-			DaySelectionButton button = _daySelectionScene.Instance<DaySelectionButton>();
-			button.Day = date;
+			DaySelectionItem item = _daySelectionScene.Instance<DaySelectionItem>();
+			item.Day = date;
+			item.Connect("DeleteMe", this, nameof(DeleteDay));
 
-			this.ButtonList.AddChild(button);
+			this.ButtonList.AddChild(item);
 		}
+	}
+
+	private void DeleteDay(DaySelectionItem source)
+	{
+		SaveUtils.RemoveDay(source.Day);
+		this.ButtonList.RemoveChild(source);
 	}
 }
