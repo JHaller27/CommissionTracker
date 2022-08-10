@@ -12,6 +12,12 @@ public class DaySelectionItem : HBoxContainer
 		set => this.Button.Day = value;
 	}
 
+	public void SetLockDelete(bool isEnabled)
+	{
+		this.DeleteButton.Disabled = !isEnabled;
+	}
+
+	private TextureButton DeleteButton => this.GetNode<TextureButton>("DeleteButton");
 	private DaySelectionButton Button => this.GetNode<DaySelectionButton>("Button");
 
 	private void Remove() => EmitSignal(nameof(DeleteMe), this);
