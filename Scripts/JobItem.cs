@@ -42,6 +42,10 @@ public class JobItem : VBoxContainer
 		LineEdit le = this.ValueNode.GetLineEdit();
 		le.GrabFocus();
 		le.Text = string.Empty;
+
+		TextureButton button = this.GetNode<TextureButton>("%DeleteButton");
+		Control basedOn = this.GetChild<Control>(0);
+		Utils.SetTextureButtonSize(button, basedOn);
 	}
 
 	public JobItemModel Export()

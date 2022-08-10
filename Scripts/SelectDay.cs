@@ -22,6 +22,9 @@ public class SelectDay : Control
 
 			this.ButtonList.AddChild(item);
 		}
+
+		Control basedOn = this.GetNode<Control>("%GoBackButton");
+		Utils.SetTextureButtonSize(this.DeleteLockButton, basedOn);
 	}
 
 	private void DeleteDay(DaySelectionItem source)

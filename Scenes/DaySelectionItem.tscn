@@ -7,23 +7,22 @@
 
 [node name="DaySelectionItem" type="HBoxContainer"]
 anchor_right = 1.0
-anchor_bottom = 1.0
+margin_bottom = 20.0
 rect_pivot_offset = Vector2( -876, -106 )
 script = ExtResource( 2 )
 
 [node name="DeleteButton" type="TextureButton" parent="."]
-margin_right = 24.0
-margin_bottom = 24.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 disabled = true
 texture_normal = ExtResource( 3 )
 texture_disabled = ExtResource( 4 )
+expand = true
 
 [node name="Button" type="Button" parent="."]
-margin_left = 28.0
-margin_right = 412.0
-margin_bottom = 869.0
+margin_left = 4.0
+margin_right = 1440.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 script = ExtResource( 1 )
 ChangeToScene = "res://Scenes/DayEdit.tscn"

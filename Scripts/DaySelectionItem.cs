@@ -1,4 +1,5 @@
 using System;
+using CommissionTracker;
 using Godot;
 
 public class DaySelectionItem : HBoxContainer
@@ -10,6 +11,13 @@ public class DaySelectionItem : HBoxContainer
 	{
 		get => this.Button.Day;
 		set => this.Button.Day = value;
+	}
+
+	public override void _Ready()
+	{
+		base._Ready();
+
+		Utils.SetTextureButtonSize(this.DeleteButton, this);
 	}
 
 	public void SetLockDelete(bool isEnabled)

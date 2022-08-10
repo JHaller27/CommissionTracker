@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using Godot;
 
 namespace CommissionTracker
 {
@@ -21,6 +22,13 @@ namespace CommissionTracker
 		public static string GetDateDisplayString(this DateTime dateTime)
 		{
 			return dateTime.ToString(DateDisplayFormat);
+		}
+
+		public static void SetTextureButtonSize(TextureButton button, Control basedOn)
+		{
+			button.Expand = true;
+			int height = (int)basedOn.RectSize.y;
+			button.RectMinSize = new(height, height);
 		}
 	}
 }
