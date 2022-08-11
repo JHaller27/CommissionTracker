@@ -12,7 +12,7 @@ public class DayEdit : Control
 		get
 		{
 			string text = this.DateTitleNode.Text;
-			return DateTime.Parse(text);
+			return Utils.DateFromDisplayString(text);
 		}
 		set
 		{
@@ -70,6 +70,8 @@ public class DayEdit : Control
 		this.MaxScroll = (int)this.ScrollBar.MaxValue;
 
 		this.Date = DateTime.Today;
+		this.CommissionPercentage = GlobalContext.Model.CommissionPercentage;
+
 		if (GlobalContext.LoadDate != null)
 		{
 			this.Date = (DateTime)GlobalContext.LoadDate;
@@ -80,10 +82,6 @@ public class DayEdit : Control
 			DayModel model = SaveUtils.LoadDay(this.Date);
 			this.Import(model);
 			this.RecalculateTotals();
-		}
-		else
-		{
-			this.CommissionPercentage = GlobalContext.Model.CommissionPercentage;
 		}
 
 		this.RecalculateTotals();
@@ -138,6 +136,7 @@ public class DayEdit : Control
 	{
 		this.UpdateDetected();
 		GlobalContext.Model.CommissionPercentage = this.CommissionPercentage;
+		SaveUtils.SaveGlobalData();
 	}
 
 	private void JobsListChanged() => this.UpdateDetected();

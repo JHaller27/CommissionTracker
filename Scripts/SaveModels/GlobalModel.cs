@@ -2,6 +2,6 @@ namespace CommissionTracker.SaveModels
 {
 	public class GlobalModel
 	{
-		public decimal CommissionPercentage { get; set; }
+		public decimal CommissionPercentage { get; set; } = 50;
 	}
 }

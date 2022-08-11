@@ -6,6 +6,6 @@ namespace CommissionTracker
 	public static class GlobalContext
 	{
 		public static DateTime? LoadDate { get; set; }
-		public static GlobalModel Model { get; set; } = new();
+		public static GlobalModel Model { get; set; } = SaveUtils.LoadGlobalData() ?? new();
 	}
 }

@@ -24,6 +24,11 @@ namespace CommissionTracker
 			return dateTime.ToString(DateDisplayFormat);
 		}
 
+		public static DateTime DateFromDisplayString(string displayString)
+		{
+			return DateTime.ParseExact(displayString, DateDisplayFormat, CultureInfo.InvariantCulture);
+		}
+
 		public static void SetTextureButtonSize(TextureButton button, Control basedOn)
 		{
 			button.Expand = true;

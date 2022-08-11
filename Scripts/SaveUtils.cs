@@ -92,9 +92,9 @@ namespace CommissionTracker
 			SaveAsJson(GlobalContext.Model, GlobalModelsPath);
 		}
 
-		public static void LoadGlobalData()
+		public static GlobalModel LoadGlobalData()
 		{
-			GlobalContext.Model = LoadFromJson<GlobalModel>(GlobalModelsPath);
+			return LoadFromJson<GlobalModel>(GlobalModelsPath);
 		}
 	}
 }
