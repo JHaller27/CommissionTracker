@@ -131,6 +131,7 @@ public class DayEdit : Control
 	private void UpdateDetected()
 	{
 		SaveUtils.SaveDay(this);
+		this.GlobalReleaseFocus();
 	}
 
 	private void CommissionUpdated(float value)

@@ -30,5 +30,11 @@ namespace CommissionTracker
 			int height = (int)basedOn.RectSize.y;
 			button.RectMinSize = new(height, height);
 		}
+
+		public static void GlobalReleaseFocus(this Control control)
+		{
+			Control currentFocus = control.GetFocusOwner();
+			currentFocus?.ReleaseFocus();
+		}
 	}
 }
