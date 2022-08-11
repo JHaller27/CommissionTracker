@@ -61,6 +61,7 @@ public class DayEdit : Control
 	private VScrollBar ScrollBar => this.ScrollContainer.GetVScrollbar();
 
 	// Private properties
+	private bool DoneLoading { get; set; } = false;
 	private int MaxScroll { get; set; }
 
 	// Methods
@@ -85,6 +86,7 @@ public class DayEdit : Control
 		}
 
 		this.RecalculateTotals();
+		this.DoneLoading = true;
 	}
 
 	public override void _Process(float delta)
@@ -128,6 +130,8 @@ public class DayEdit : Control
 
 	private void UpdateDetected()
 	{
+		if (!this.DoneLoading) return;
+
 		SaveUtils.SaveDay(this);
 		this.GlobalReleaseFocus();
 	}
