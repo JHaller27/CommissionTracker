@@ -83,7 +83,7 @@ public class DayEdit : Control
 		}
 		else
 		{
-			this.CommissionPercentage = 40;
+			this.CommissionPercentage = GlobalContext.Model.CommissionPercentage;
 		}
 
 		this.RecalculateTotals();
@@ -133,6 +133,11 @@ public class DayEdit : Control
 		SaveUtils.SaveDay(this);
 	}
 
-	private void CommissionUpdated(float value) => this.UpdateDetected();
+	private void CommissionUpdated(float value)
+	{
+		this.UpdateDetected();
+		GlobalContext.Model.CommissionPercentage = this.CommissionPercentage;
+	}
+
 	private void JobsListChanged() => this.UpdateDetected();
 }

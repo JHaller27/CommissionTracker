@@ -10,30 +10,18 @@ namespace CommissionTracker
 	public static class SaveUtils
 	{
 		private const string ListOfDaysPath = "user://ListOfDays.sav";
+		private const string GlobalModelsPath = "user://Globals.sav";
 
 		public static void SaveDay(DayEdit dayEditScene)
 		{
 			DayModel model = dayEditScene.Export();
-			string json = JsonConvert.SerializeObject(model);
-
-			File file = new();
-			file.Open(GetDaySavePath(dayEditScene.Date), File.ModeFlags.Write);
-			file.StoreLine(json);
-			file.Close();
-
+			SaveAsJson(model, GetDaySavePath(dayEditScene.Date));
 			AddDay(dayEditScene.Date);
 		}
 
 		public static DayModel LoadDay(DateTime dateTime)
 		{
-			File file = new();
-			file.Open(GetDaySavePath(dateTime), File.ModeFlags.Read);
-			string json = file.GetAsText();
-			file.Close();
-
-			DayModel model = JsonConvert.DeserializeObject<DayModel>(json);
-
-			return model;
+			return LoadFromJson<DayModel>(GetDaySavePath(dateTime));
 		}
 
 		private static string GetDaySavePath(DateTime dateTime)
@@ -78,6 +66,35 @@ namespace CommissionTracker
 				file.StoreLine(date.GetDateSaveString());
 			}
 			file.Close();
+		}
+
+		private static void SaveAsJson<T>(T obj, string path)
+		{
+			File file = new();
+			string json = JsonConvert.SerializeObject(obj);
+			file.Open(path, File.ModeFlags.Write);
+			file.StoreLine(json);
+			file.Close();
+		}
+
+		private static T? LoadFromJson<T>(string path)
+		{
+			File file = new();
+			file.Open(path, File.ModeFlags.Read);
+			string json = file.GetAsText();
+			file.Close();
+
+			return JsonConvert.DeserializeObject<T>(json);
+		}
+
+		public static void SaveGlobalData()
+		{
+			SaveAsJson(GlobalContext.Model, GlobalModelsPath);
+		}
+
+		public static void LoadGlobalData()
+		{
+			GlobalContext.Model = LoadFromJson<GlobalModel>(GlobalModelsPath);
 		}
 	}
 }
