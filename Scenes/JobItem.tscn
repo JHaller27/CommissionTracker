@@ -1,16 +1,30 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/JobItem.cs" type="Script" id=1]
 [ext_resource path="res://ThemeResources/trash-can-icon-red.png" type="Texture" id=2]
+[ext_resource path="res://ThemeResources/DefaultTheme.tres" type="Theme" id=3]
 
 [node name="IncomeItem" type="VBoxContainer"]
 anchor_right = 1.0
 margin_bottom = 24.0
+theme = ExtResource( 3 )
 script = ExtResource( 1 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="AmountEdit" type="SpinBox" parent="."]
+unique_name_in_owner = true
 margin_right = 1440.0
-margin_bottom = 24.0
+margin_bottom = 81.0
+focus_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+step = 0.01
+allow_greater = true
+prefix = "$"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 101.0
+margin_right = 1440.0
+margin_bottom = 182.0
 
 [node name="DeleteButton" type="TextureButton" parent="HBoxContainer"]
 unique_name_in_owner = true
@@ -23,46 +37,38 @@ texture_normal = ExtResource( 2 )
 expand = true
 
 [node name="TypeOptionButton" type="OptionButton" parent="HBoxContainer"]
-margin_left = 20.0
-margin_right = 492.0
-margin_bottom = 24.0
+unique_name_in_owner = true
+margin_left = 36.0
+margin_right = 497.0
+margin_bottom = 81.0
 size_flags_horizontal = 3
 text = "Commission"
+align = 1
 items = [ "Commission", null, false, 0, null, "Tip", null, false, 1, null ]
 selected = 0
 
-[node name="AmountEdit" type="SpinBox" parent="HBoxContainer"]
-margin_left = 496.0
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+margin_left = 517.0
 margin_right = 1440.0
-margin_bottom = 24.0
-focus_mode = 2
+margin_bottom = 81.0
+rect_min_size = Vector2( 0, 26 )
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-step = 0.01
-allow_greater = true
-prefix = "$"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-margin_top = 28.0
-margin_right = 1440.0
-margin_bottom = 54.0
-rect_min_size = Vector2( 0, 26 )
 scroll_vertical_enabled = false
 
-[node name="NoteLineEdit" type="LineEdit" parent="ScrollContainer"]
+[node name="NoteLineEdit" type="LineEdit" parent="HBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
-margin_right = 1440.0
-margin_bottom = 26.0
+margin_right = 923.0
+margin_bottom = 81.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
 expand_to_text_length = true
 clear_button_enabled = true
 placeholder_text = "Note"
 caret_blink = true
 caret_blink_speed = 0.5
 
+[connection signal="value_changed" from="AmountEdit" to="." method="AmountChanged"]
 [connection signal="pressed" from="HBoxContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]
 [connection signal="item_selected" from="HBoxContainer/TypeOptionButton" to="." method="JobTypeChanged"]
-[connection signal="value_changed" from="HBoxContainer/AmountEdit" to="." method="AmountChanged"]
-[connection signal="text_entered" from="ScrollContainer/NoteLineEdit" to="." method="NoteChanged"]
+[connection signal="text_entered" from="HBoxContainer/ScrollContainer/NoteLineEdit" to="." method="NoteChanged"]

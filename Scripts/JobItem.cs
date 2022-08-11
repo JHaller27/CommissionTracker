@@ -27,9 +27,9 @@ public class JobItem : VBoxContainer
 	}
 
 	// Node proxies
-	private SpinBox ValueNode => this.GetNode<SpinBox>("HBoxContainer/AmountEdit");
+	private SpinBox ValueNode => this.GetNode<SpinBox>("%AmountEdit");
 	private LineEdit NoteNode => this.GetNode<LineEdit>("%NoteLineEdit");
-	private OptionButton TypeNode => this.GetNode<OptionButton>("HBoxContainer/TypeOptionButton");
+	private OptionButton TypeNode => this.GetNode<OptionButton>("%TypeOptionButton");
 
 	[Signal]
 	public delegate void DeleteMe();
@@ -39,10 +39,6 @@ public class JobItem : VBoxContainer
 
 	public override void _Ready()
 	{
-		LineEdit le = this.ValueNode.GetLineEdit();
-		le.GrabFocus();
-		le.Text = string.Empty;
-
 		TextureButton button = this.GetNode<TextureButton>("%DeleteButton");
 		Control basedOn = this.GetChild<Control>(0);
 		Utils.SetTextureButtonSize(button, basedOn);
