@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/DaySelectionButton.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/DaySelectionItem.cs" type="Script" id=2]
 [ext_resource path="res://ThemeResources/trash-can-icon-red.png" type="Texture" id=3]
 [ext_resource path="res://ThemeResources/trash-can-icon.png" type="Texture" id=4]
+[ext_resource path="res://ThemeResources/DefaultTheme.tres" type="Theme" id=5]
 
 [node name="DaySelectionItem" type="HBoxContainer"]
 anchor_right = 1.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( -876, -106 )
+theme = ExtResource( 5 )
 script = ExtResource( 2 )
 
 [node name="DeleteButton" type="TextureButton" parent="."]
@@ -20,9 +22,9 @@ texture_disabled = ExtResource( 4 )
 expand = true
 
 [node name="Button" type="Button" parent="."]
-margin_left = 4.0
+margin_left = 20.0
 margin_right = 1440.0
-margin_bottom = 20.0
+margin_bottom = 81.0
 size_flags_horizontal = 3
 script = ExtResource( 1 )
 ChangeToScene = "res://Scenes/DayEdit.tscn"
