@@ -84,7 +84,7 @@ margin_bottom = 307.0
 unique_name_in_owner = true
 margin_top = 327.0
 margin_right = 1220.0
-margin_bottom = 2392.0
+margin_bottom = 2552.0
 size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
@@ -108,18 +108,18 @@ margin_right = 1220.0
 margin_bottom = 394.0
 
 [node name="AddItem" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
-margin_top = 2412.0
+margin_top = 2572.0
 margin_right = 1220.0
-margin_bottom = 2493.0
+margin_bottom = 2653.0
 text = "Add job"
 
 [node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
-margin_top = 2513.0
+margin_top = 2673.0
 margin_right = 1220.0
-margin_bottom = 2517.0
+margin_bottom = 2677.0
 
 [node name="TotalGrid" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer"]
-margin_top = 2537.0
+margin_top = 2697.0
 margin_right = 1220.0
 margin_bottom = 2980.0
 size_flags_horizontal = 3
@@ -152,18 +152,18 @@ size_flags_horizontal = 3
 text = "123.45"
 
 [node name="TipsTotalLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
-margin_top = 181.0
+margin_top = 101.0
 margin_right = 605.0
-margin_bottom = 262.0
+margin_bottom = 182.0
 size_flags_horizontal = 3
 text = "Tips total"
 align = 2
 
 [node name="TipsValue" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
 margin_left = 615.0
-margin_top = 181.0
+margin_top = 101.0
 margin_right = 1220.0
-margin_bottom = 262.0
+margin_bottom = 182.0
 size_flags_horizontal = 3
 
 [node name="Currency" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid/TipsValue"]
@@ -179,18 +179,18 @@ size_flags_horizontal = 3
 text = "123.45"
 
 [node name="TotalLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
-margin_top = 362.0
+margin_top = 202.0
 margin_right = 605.0
-margin_bottom = 443.0
+margin_bottom = 283.0
 size_flags_horizontal = 3
 text = "Grand total"
 align = 2
 
 [node name="GrandTotalValue" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TotalGrid"]
 margin_left = 615.0
-margin_top = 362.0
+margin_top = 202.0
 margin_right = 1220.0
-margin_bottom = 443.0
+margin_bottom = 283.0
 size_flags_horizontal = 3
 
 [node name="Currency" type="Label" parent="Panel/MarginContainer/VBoxContainer/TotalGrid/GrandTotalValue"]
