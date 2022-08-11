@@ -69,5 +69,5 @@ public class JobItem : VBoxContainer
 
 	private void AmountChanged(float value) => EmitSignal(nameof(Changed));
 	private void NoteChanged(string newText) => EmitSignal(nameof(Changed));
-	private void JobTypeChanged() => EmitSignal(nameof(Changed));
+	private void JobTypeChanged(int index) => EmitSignal(nameof(Changed));
 }
