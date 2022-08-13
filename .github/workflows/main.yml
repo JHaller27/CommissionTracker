@@ -1,115 +1,26 @@
-name: "godot-ci export"
+name: Build Godot Project
+
 on: push
 
-env:
-  GODOT_VERSION: 3.5
-  EXPORT_NAME: CommissionTracker
-  IMAGE_VERSION: mono-${GODOT_VERSION}
-
 jobs:
-  export-android-debug:
-    name: Android Export
-    runs-on: ubuntu-20.04
+  Godot:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [linux, windows, mac]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           lfs: true
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          ls /root/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Windows Build
-        run: |
-          mkdir -v -p build/android
-          cd $EXPORT_NAME
-          godot -v --export-debug "Android Debug" ../build/android/$EXPORT_NAME.apk
+      - name: Build
+        id: build
+        uses: manleydev/build-godot-action@v1.4.1
+        with:
+          name: example
+          preset: ${{ matrix.platform }}
+          debugMode: "true"
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
-          name: android
-          path: build/android
-
-  export-windows:
-    name: Windows Export
-    runs-on: ubuntu-20.04
-    container:
-      image: barichello/godot-ci:mono-3.5
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          lfs: true
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Windows Build
-        run: |
-          mkdir -v -p build/windows
-          cd $EXPORT_NAME
-          godot -v --export "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: windows
-          path: build/windows
-
-  export-linux:
-    name: Linux Export
-    runs-on: ubuntu-20.04
-    container:
-      image: barichello/godot-ci:${IMAGE_VERSION}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          lfs: true
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Linux Build
-        run: |
-          mkdir -v -p build/linux
-          cd $EXPORT_NAME
-          godot -v --export "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: linux
-          path: build/linux
-
-  export-web:
-    name: Web Export
-    runs-on: ubuntu-20.04
-    container:
-      image: barichello/godot-ci:${IMAGE_VERSION}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          lfs: true
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Web Build
-        run: |
-          mkdir -v -p build/web
-          cd $EXPORT_NAME
-          godot -v --export "HTML5" ../build/web/index.html
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: web
-          path: build/web
-      - name: Install rsync 📚
-        run: |
-          apt-get update && apt-get install -y rsync
-      - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v4
-        with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: build/web # The folder the action should deploy.
+          name: Client - ${{ matrix.platform }}
+          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
