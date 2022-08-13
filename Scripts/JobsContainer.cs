@@ -19,7 +19,7 @@ public class JobsContainer : VBoxContainer
 		}
 	}
 
-	public JobItem AddJobItem()
+	public JobItem AddJobItem(bool grabFocus)
 	{
 		JobItem jobItemNode = _jobItemScene.Instance<JobItem>();
 		this.AddChild(jobItemNode);
@@ -27,6 +27,11 @@ public class JobsContainer : VBoxContainer
 		jobItemNode.Connect("Changed", this, nameof(ChangeDetected));
 
 		EmitSignal(nameof(Changed));
+
+		if (grabFocus)
+		{
+			jobItemNode.GrabFocus();
+		}
 
 		return jobItemNode;
 	}
@@ -60,10 +65,11 @@ public class JobsContainer : VBoxContainer
 
 		foreach (JobItemModel model in jobs)
 		{
-			JobItem jobItem = this.AddJobItem();
+			JobItem jobItem = this.AddJobItem(false);
 			jobItem.Import(model);
 		}
 	}
 
 	private void ChangeDetected() => EmitSignal(nameof(Changed));
+	private JobItem AddJobItem() => this.AddJobItem(true);
 }

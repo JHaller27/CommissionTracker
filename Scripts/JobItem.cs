@@ -61,6 +61,12 @@ public class JobItem : VBoxContainer
 		this.Note = model.Note;
 	}
 
+	public new void GrabFocus()
+	{
+		this.ValueNode.GetLineEdit().Text = string.Empty;
+		this.ValueNode.GetLineEdit().GrabFocus();
+	}
+
 	private void _on_DeleteButton_pressed() => EmitSignal(nameof(DeleteMe));
 
 	private void AmountChanged(float value) => EmitSignal(nameof(Changed));
