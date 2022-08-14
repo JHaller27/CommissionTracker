@@ -24,11 +24,15 @@ jobs:
       run: |
         cd /home/runner/work/CommissionTracker/CommissionTracker
         echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > ./release.keystore
+        
+    - name: Setup Python
+      uses: actions/setup-python@v4.2.0
+      with:
+        # Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset.
+        python-version: 3.10
 
     - name: Populate export_presets
       id: populate_export_presets
-      with:
-        python-version: 3.10
       env:
         SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.SECRET_RELEASE_KEYSTORE_USER }}
         SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.SECRET_RELEASE_KEYSTORE_PASSWORD }}
