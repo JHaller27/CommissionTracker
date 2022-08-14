@@ -21,9 +21,9 @@ jobs:
       id: generate_keystore
       run: |
         cd /home/runner/work/CommissionTracker/CommissionTracker
-        echo $SECRET_RELEASE_KEYSTORE_BASE64
-        echo $SECRET_RELEASE_KEYSTORE_USER
-        echo $SECRET_RELEASE_KEYSTORE_PASSWORD
+        echo "base64 = $SECRET_RELEASE_KEYSTORE_BASE64"
+        echo "user = $SECRET_RELEASE_KEYSTORE_USER"
+        echo "pswd = $SECRET_RELEASE_KEYSTORE_PASSWORD"
 
         echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > ./release.keystore
         sed 's@keystore/release=".*"@keystore/release="./release.keystore"@g' -i export_presets.cfg
