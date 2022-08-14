@@ -21,8 +21,11 @@ jobs:
       id: generate_keystore
       run: |
         cd /home/runner/work/CommissionTracker/CommissionTracker
+        echo $SECRET_RELEASE_KEYSTORE_BASE64
+        echo $SECRET_RELEASE_KEYSTORE_USER
+        echo $SECRET_RELEASE_KEYSTORE_PASSWORD
+
         echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > ./release.keystore
-        md5sum ./release.keystore
         sed 's@keystore/release=".*"@keystore/release="./release.keystore"@g' -i export_presets.cfg
         sed 's@keystore/release_user=".*"@keystore/release_user="$SECRET_RELEASE_KEYSTORE_USER"@g' -i export_presets.cfg
         sed 's@keystore/release_password=".*"@keystore/release_password="$SECRET_RELEASE_KEYSTORE_PASSWORD"@g' -i export_presets.cfg
