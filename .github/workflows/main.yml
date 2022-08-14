@@ -9,27 +9,32 @@ jobs:
     # Job name, can be anything
     name: Export Game
     steps:
-      # Always include the checkout step so that 
+      # Always include the checkout step so that
       # your project is available for Godot to export
     - name: checkout
       uses: actions/checkout@v3
       # Ensure that you get the entire project history
       with:
         fetch-depth: 0
-        
+
     - name: Generate keystore
       id: generate_keystore
       env:
         SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.SECRET_RELEASE_KEYSTORE_BASE64 }}
+      run: |
+        cd /home/runner/work/CommissionTracker/CommissionTracker
+        echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > ./release.keystore
+
+    - name: Populate export_presets
+      id: populate_export_presets
+      with:
+        python-version: 3.10
+      env:
         SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.SECRET_RELEASE_KEYSTORE_USER }}
         SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.SECRET_RELEASE_KEYSTORE_PASSWORD }}
       run: |
         cd /home/runner/work/CommissionTracker/CommissionTracker
-        echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > ./release.keystore
-        sed 's@keystore/release=".*"@keystore/release="./release.keystore"@g' -i export_presets.cfg
-        sed 's@keystore/release_user=".*"@keystore/release_user="'$SECRET_RELEASE_KEYSTORE_USER'"@g' -i export_presets.cfg
-        sed 's@keystore/release_password=".*"@keystore/release_password="'$SECRET_RELEASE_KEYSTORE_PASSWORD'"@g' -i export_presets.cfg
-        cat export_presets.cfg
+        python ./Deploy/populate_keystore.py "./release.keystore" $SECRET_RELEASE_KEYSTORE_USER $SECRET_RELEASE_KEYSTORE_PASSWORD
 
     - name: Set up JDK 8
       uses: actions/setup-java@v3
@@ -39,7 +44,7 @@ jobs:
 
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
-  
+
     - name: export game
       id: export
       # Use latest version (see releases for all versions)
