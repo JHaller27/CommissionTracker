@@ -1,19 +1,12 @@
-# Whenever a tag push matching pattern "v*" then run the job
 on: push
 
 jobs:
-  # job id, can be anything
   export_game:
-    # Always use ubuntu-latest for this action
     runs-on: ubuntu-latest
-    # Job name, can be anything
     name: Export Game
     steps:
-      # Always include the checkout step so that
-      # your project is available for Godot to export
     - name: checkout
       uses: actions/checkout@v3
-      # Ensure that you get the entire project history
       with:
         fetch-depth: 0
 
@@ -28,7 +21,6 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v4.2.0
       with:
-        # Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset.
         python-version: 3.9
 
     - name: Populate export_presets
@@ -37,13 +29,14 @@ jobs:
         SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.SECRET_RELEASE_KEYSTORE_USER }}
         SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.SECRET_RELEASE_KEYSTORE_PASSWORD }}
       run: |
-        cd /home/runner/work/CommissionTracker/CommissionTracker
+        cd $GITHUB_WORKSPACE
         python ./Deploy/populate_keystore.py ./export_presets.cfg ./release.keystore $SECRET_RELEASE_KEYSTORE_USER $SECRET_RELEASE_KEYSTORE_PASSWORD
 
     - name: Debug
       id: debug
       run: |
-        cd /home/runner/work/CommissionTracker/CommissionTracker
+        cd $GITHUB_WORKSPACE
+        pwd
         cat ./export_presets.cfg
 
     - name: Set up JDK 8
@@ -52,7 +45,7 @@ jobs:
         java-version: 8
         distribution: temurin
 
-    - name: Setup Android SDK
+    - name: Set up Android SDK
       uses: android-actions/setup-android@v2
 
     - name: export game
@@ -69,7 +62,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
-        # Artifact name
         name: Android
-        # A file, directory or wildcard pattern that describes what to upload
         path: /home/runner/.local/share/godot/archives/Android.zip
