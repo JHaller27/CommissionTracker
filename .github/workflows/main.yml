@@ -54,3 +54,4 @@ jobs:
       with:
         name: Android
         path: /home/runner/.local/share/godot/builds/Android/*
+        if-no-files-found: error
