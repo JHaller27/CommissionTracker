@@ -38,7 +38,7 @@ jobs:
         SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.SECRET_RELEASE_KEYSTORE_PASSWORD }}
       run: |
         cd /home/runner/work/CommissionTracker/CommissionTracker
-        python ./Deploy/populate_keystore.py "./release.keystore" $SECRET_RELEASE_KEYSTORE_USER $SECRET_RELEASE_KEYSTORE_PASSWORD
+        python ./Deploy/populate_keystore.py ./export_presets.cfg ./release.keystore $SECRET_RELEASE_KEYSTORE_USER $SECRET_RELEASE_KEYSTORE_PASSWORD
 
     - name: Set up JDK 8
       uses: actions/setup-java@v3
