@@ -65,3 +65,11 @@ jobs:
         godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/3.5-stable/Godot_v3.5-stable_export_templates.tpz
         relative_project_path: ./
         archive_output: true
+    
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        # Artifact name
+        name: Android
+        # A file, directory or wildcard pattern that describes what to upload
+        path: /home/runner/.local/share/godot/archives/Android.zip
