@@ -25,16 +25,6 @@ jobs:
         SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.SECRET_RELEASE_KEYSTORE_PASSWORD }}
       run: |
         cd /home/runner/work/CommissionTracker/CommissionTracker
-        
-        echo "base64 = $SECRET_RELEASE_KEYSTORE_BASE64"
-        echo -n $SECRET_RELEASE_KEYSTORE_BASE64 | wc -c
-        
-        echo "user = $SECRET_RELEASE_KEYSTORE_USER"
-        echo -n $SECRET_RELEASE_KEYSTORE_USER | wc -c
-        
-        echo "pswd = $SECRET_RELEASE_KEYSTORE_PASSWORD"
-        echo -n $SECRET_RELEASE_KEYSTORE_PASSWORD | wc -c
-
         echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > ./release.keystore
         sed 's@keystore/release=".*"@keystore/release="./release.keystore"@g' -i export_presets.cfg
         sed 's@keystore/release_user=".*"@keystore/release_user="'$SECRET_RELEASE_KEYSTORE_USER'"@g' -i export_presets.cfg
