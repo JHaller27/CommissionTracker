@@ -37,8 +37,8 @@ jobs:
 
         echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > ./release.keystore
         sed 's@keystore/release=".*"@keystore/release="./release.keystore"@g' -i export_presets.cfg
-        sed 's@keystore/release_user=".*"@keystore/release_user="$SECRET_RELEASE_KEYSTORE_USER"@g' -i export_presets.cfg
-        sed 's@keystore/release_password=".*"@keystore/release_password="$SECRET_RELEASE_KEYSTORE_PASSWORD"@g' -i export_presets.cfg
+        sed 's@keystore/release_user=".*"@keystore/release_user="'$SECRET_RELEASE_KEYSTORE_USER'"@g' -i export_presets.cfg
+        sed 's@keystore/release_password=".*"@keystore/release_password="'$SECRET_RELEASE_KEYSTORE_PASSWORD'"@g' -i export_presets.cfg
         cat export_presets.cfg
 
     - name: Set up JDK 8
