@@ -50,16 +50,8 @@ jobs:
         relative_project_path: ./
         archive_output: true
     
-    - name: Test
-      env:
-        FOO: ${{ env.HOME }}/.local/share/godot/builds/Android/*
-      run: |
-        echo $HOME
-        ls $HOME/.local/share/godot/builds/Android/*
-        echo $FOO
-    
     - name: Upload Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
         name: Android
-        path: ${{ env.HOME }}/.local/share/godot/builds/Android/*
+        path: /home/runner/.local/share/godot/builds/Android/*
