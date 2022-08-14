@@ -17,10 +17,16 @@ keystore = Path(keystore)
 with config.open('r') as fp:
 	config_text = fp.read()
 
-config_text = populate(config_text, 'keystore/release="{}"', keystore)
-config_text = populate(config_text, 'keystore/release_user="{}"', username)
-config_text = populate(config_text, 'keystore/release_password="{}"', password)
 
+replace_map = {
+	'': keystore,
+	'_user': username,
+	'_password': password,
+}
+
+for suffix, value in replace_map.items():
+	config_text = populate(config_text, f'keystore/debug{suffix}="{{}}"', value)
+	config_text = populate(config_text, f'keystore/release{suffix}="{{}}"', value)
 
 with config.open('w') as fp:
 	fp.write(config_text)
