@@ -57,6 +57,7 @@ jobs:
         if-no-files-found: error
     
     - name: Debug
+      id: debug
       run: |
         ls /home/runner/.local/share/godot/builds/Android
 
