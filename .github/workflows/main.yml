@@ -58,11 +58,13 @@ jobs:
 
     - name: Set up Butler
       run: |
-        curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
         mkdir -p ~/.local/share/butler
-        unzip butler.zip -d ~/.local/share/butler
-        ln -s ~/.local/share/butler/butler ~/.local/bin
-        chmod +x ~/.local/bin/butler
+        cd ~/.local/share/butler
+        curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+        unzip butler.zip
+        chmod +x ./butler
+        ln -s ~/.local/share/butler/butler ~/.local/bin/butler
+        cd ~
         butler -V
     
     - name: Itch.io Upload
