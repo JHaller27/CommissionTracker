@@ -63,13 +63,7 @@ jobs:
         curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
         unzip butler.zip
         chmod +x ./butler
-        
-        pwd
-        ls
-        
-        ln -s ~/.local/share/butler/butler ~/.local/bin/butler
-        cd ~
-        butler -V
+        ./butler -V
     
     - name: Itch.io Upload
       env:
@@ -81,4 +75,4 @@ jobs:
         export_dir=~/.local/share/godot/builds/Android
         
         ls $export_dir
-        butler push $export_dir $BUTLER_USER/$GAME_ID:$CHANNEL
+        ~/.local/share/butler/butler push $export_dir $BUTLER_USER/$GAME_ID:$CHANNEL
