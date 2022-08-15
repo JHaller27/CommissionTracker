@@ -55,6 +55,10 @@ jobs:
         name: Android
         path: /home/runner/.local/share/godot/builds/Android/*
         if-no-files-found: error
+    
+    - name: Debug
+      run: |
+        ls /home/runner/.local/share/godot/builds/Android
 
     - name: Publish to Itch.io
       uses: manleydev/butler-publish-itchio-action@master
