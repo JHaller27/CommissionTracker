@@ -55,17 +55,17 @@ jobs:
         name: Android
         path: /home/runner/.local/share/godot/builds/Android/*
         if-no-files-found: error
-    
-    - name: Debug
-      id: debug
-      run: |
-        ls /home/runner/.local/share/godot/builds/Android
-
-    - name: Publish to Itch.io
-      uses: manleydev/butler-publish-itchio-action@master
-      env:
-        BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDS }}
-        CHANNEL: android
-        ITCH_GAME: commission-tracker
-        ITCH_USER: ${{ secrets.BUTLER_USER }}
-        PACKAGE: /home/runner/.local/share/godot/builds/Android/CommissionTracker.apk
+        
+    - name: Itch.io Upload
+      # You may pin to the exact commit or the version.
+      # uses: robpc/itchio-upload-action@c7a5c9ab90447fa38cdc6ba6fd0d52d9801c5417
+      uses: robpc/itchio-upload-action@v1.0
+      with:
+        # path to upload
+        path: /home/runner/.local/share/godot/builds/Android/CommissionTracker.apk
+        # name of the itchio project
+        project: ${{ secrets.BUTLER_USER }}/commission-tracker
+        # name of the upload channel
+        channel: android
+        # itchio api key
+        api-key: ${{ secrets.BUTLER_CREDS }}
