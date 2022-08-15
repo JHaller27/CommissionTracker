@@ -63,4 +63,4 @@ jobs:
         CHANNEL: android
         ITCH_GAME: commission-tracker
         ITCH_USER: ${{ secrets.BUTLER_USER }}
-        PACKAGE: /home/runner/.local/share/godot/builds/Android
+        PACKAGE: /home/runner/.local/share/godot/builds/Android/*
