@@ -63,6 +63,10 @@ jobs:
         curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
         unzip butler.zip
         chmod +x ./butler
+        
+        pwd
+        ls
+        
         ln -s ~/.local/share/butler/butler ~/.local/bin/butler
         cd ~
         butler -V
