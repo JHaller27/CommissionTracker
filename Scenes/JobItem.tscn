@@ -28,9 +28,9 @@ margin_bottom = 182.0
 
 [node name="DeleteButton" type="TextureButton" parent="HBoxContainer"]
 unique_name_in_owner = true
-margin_right = 16.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 16, 16 )
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture_normal = ExtResource( 2 )
@@ -38,8 +38,8 @@ expand = true
 
 [node name="TypeOptionButton" type="OptionButton" parent="HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 36.0
-margin_right = 497.0
+margin_left = 84.0
+margin_right = 529.0
 margin_bottom = 81.0
 size_flags_horizontal = 3
 text = "Commission"
@@ -48,7 +48,7 @@ items = [ "Commission", null, false, 0, null, "Tip", null, false, 1, null ]
 selected = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
-margin_left = 517.0
+margin_left = 549.0
 margin_right = 1440.0
 margin_bottom = 81.0
 rect_min_size = Vector2( 0, 26 )
@@ -58,7 +58,7 @@ scroll_vertical_enabled = false
 
 [node name="NoteLineEdit" type="LineEdit" parent="HBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
-margin_right = 923.0
+margin_right = 891.0
 margin_bottom = 81.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
