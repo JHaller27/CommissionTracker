@@ -56,7 +56,7 @@ public class DayEdit : Control
 	private Label CommissionTotalNode => this.GetNode<Label>("Panel/MarginContainer/VBoxContainer/TotalGrid/CommissionValue/Value");
 	private Label TipsTotalNode => this.GetNode<Label>("Panel/MarginContainer/VBoxContainer/TotalGrid/TipsValue/Value");
 	private Label GrandTotalNode => this.GetNode<Label>("Panel/MarginContainer/VBoxContainer/TotalGrid/GrandTotalValue/Value");
-	private JobsContainer JobsContainer => this.GetNode<JobsContainer>("Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer");
+	private JobsContainer JobsContainer => this.GetNode<JobsContainer>("%JobsContainer");
 	private ScrollContainer ScrollContainer => this.GetNode<ScrollContainer>("%JobsScrollContainer");
 	private VScrollBar ScrollBar => this.ScrollContainer.GetVScrollbar();
 

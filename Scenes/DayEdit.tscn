@@ -90,6 +90,7 @@ follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="JobsContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer"]
+unique_name_in_owner = true
 margin_right = 1220.0
 margin_bottom = 394.0
 size_flags_horizontal = 3
