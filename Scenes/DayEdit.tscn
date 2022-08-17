@@ -89,33 +89,102 @@ size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer"]
-margin_right = 1220.0
-margin_bottom = 2105.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_top = 0
-custom_constants/margin_bottom = 0
-
-[node name="JobsContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/MarginContainer"]
+[node name="JobsContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer"]
 unique_name_in_owner = true
-margin_left = 100.0
-margin_right = 1120.0
-margin_bottom = 2105.0
+margin_right = 1208.0
+margin_bottom = 4130.0
 size_flags_horizontal = 3
-custom_constants/separation = 30
+custom_constants/separation = 100
 script = ExtResource( 2 )
 
-[node name="IncomeItem" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/MarginContainer/JobsContainer" instance=ExtResource( 1 )]
+[node name="IncomeItem" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
-margin_right = 1020.0
+margin_right = 1208.0
 margin_bottom = 182.0
 
-[node name="IncomeItem2" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/MarginContainer/JobsContainer" instance=ExtResource( 1 )]
+[node name="IncomeItem2" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
-margin_top = 212.0
-margin_right = 1020.0
-margin_bottom = 394.0
+margin_top = 282.0
+margin_right = 1208.0
+margin_bottom = 464.0
+
+[node name="IncomeItem3" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 564.0
+margin_right = 1208.0
+margin_bottom = 746.0
+
+[node name="IncomeItem4" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 846.0
+margin_right = 1208.0
+margin_bottom = 1028.0
+
+[node name="IncomeItem5" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 1128.0
+margin_right = 1208.0
+margin_bottom = 1310.0
+
+[node name="IncomeItem6" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 1410.0
+margin_right = 1208.0
+margin_bottom = 1592.0
+
+[node name="IncomeItem7" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 1692.0
+margin_right = 1208.0
+margin_bottom = 1874.0
+
+[node name="IncomeItem8" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 1974.0
+margin_right = 1208.0
+margin_bottom = 2156.0
+
+[node name="IncomeItem9" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 2256.0
+margin_right = 1208.0
+margin_bottom = 2438.0
+
+[node name="IncomeItem10" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 2538.0
+margin_right = 1208.0
+margin_bottom = 2720.0
+
+[node name="IncomeItem11" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 2820.0
+margin_right = 1208.0
+margin_bottom = 3002.0
+
+[node name="IncomeItem12" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 3102.0
+margin_right = 1208.0
+margin_bottom = 3284.0
+
+[node name="IncomeItem13" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 3384.0
+margin_right = 1208.0
+margin_bottom = 3566.0
+
+[node name="IncomeItem14" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 3666.0
+margin_right = 1208.0
+margin_bottom = 3848.0
+
+[node name="IncomeItem15" parent="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 3948.0
+margin_right = 1208.0
+margin_bottom = 4130.0
 
 [node name="AddItem" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 margin_top = 2452.0
@@ -216,5 +285,5 @@ size_flags_horizontal = 3
 text = "123.45"
 
 [connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/TitleVBox/CommissionHBox/ValueHBox/CommissionSpinBox" to="." method="CommissionUpdated"]
-[connection signal="Changed" from="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/MarginContainer/JobsContainer" to="." method="JobsListChanged"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/AddItem" to="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/MarginContainer/JobsContainer" method="AddJobItem"]
+[connection signal="Changed" from="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" to="." method="JobsListChanged"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/AddItem" to="Panel/MarginContainer/VBoxContainer/JobsScrollContainer/JobsContainer" method="AddJobItem"]
