@@ -66,6 +66,7 @@ jobs:
         ./butler -V
     
     - name: Itch.io Upload
+      if: ${{ github.ref == 'refs/heads/main' }}
       env:
         BUTLER_API_KEY: ${{ secrets.BUTLER_CREDS }}
         BUTLER_USER: ${{ secrets.BUTLER_USER }}
