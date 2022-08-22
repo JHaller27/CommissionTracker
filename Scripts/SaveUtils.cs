@@ -12,11 +12,11 @@ namespace CommissionTracker
 		private const string ListOfDaysPath = "user://ListOfDays.sav";
 		private const string GlobalModelsPath = "user://Globals.sav";
 
-		public static void SaveDay(DayEdit dayEditScene)
+		public static void SaveDay(DayModel model)
 		{
-			DayModel model = dayEditScene.Export();
-			SaveAsJson(model, GetDaySavePath(dayEditScene.Date));
-			AddDay(dayEditScene.Date);
+			DateTime date = Utils.DateFromSaveString(model.Date);
+			SaveAsJson(model, GetDaySavePath(date));
+			AddDay(date);
 		}
 
 		public static DayModel LoadDay(DateTime dateTime)
@@ -95,6 +95,26 @@ namespace CommissionTracker
 		public static GlobalModel LoadGlobalData()
 		{
 			return LoadFromJson<GlobalModel>(GlobalModelsPath);
+		}
+
+		public static string ExportAll()
+		{
+			PortAllModel allModel = new()
+			{
+				Global = GlobalContext.Model,
+				Days = ListDays().Select(LoadDay).ToList(),
+			};
+
+			return JsonConvert.SerializeObject(allModel);
+		}
+
+		public static void ImportAll(string json)
+		{
+			PortAllModel allModel = JsonConvert.DeserializeObject<PortAllModel>(json);
+			if (allModel == null) return;
+
+			GlobalContext.Model = allModel.Global;
+			allModel.Days.ForEach(SaveDay);
 		}
 	}
 }

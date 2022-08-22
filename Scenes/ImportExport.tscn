@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ThemeResources/DefaultTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/ChangeSceneButton.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/ImportExport.cs" type="Script" id=3]
+
+[node name="ImportExport" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 1340.0
+margin_bottom = 2940.0
+
+[node name="GoBackButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+margin_left = 951.0
+margin_right = 1240.0
+margin_bottom = 81.0
+size_flags_horizontal = 8
+text = "< Go back"
+script = ExtResource( 2 )
+ChangeToScene = "res://Scenes/MainMenu.tscn"
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+margin_top = 101.0
+margin_right = 1240.0
+margin_bottom = 182.0
+text = "Import / Export"
+align = 1
+
+[node name="TextEdit" type="TextEdit" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 202.0
+margin_right = 1240.0
+margin_bottom = 2537.0
+size_flags_vertical = 3
+wrap_enabled = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+margin_top = 2557.0
+margin_right = 1240.0
+margin_bottom = 2638.0
+size_flags_horizontal = 3
+
+[node name="CopyButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 610.0
+margin_bottom = 81.0
+size_flags_horizontal = 3
+text = "Copy"
+
+[node name="PasteButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 630.0
+margin_right = 1240.0
+margin_bottom = 81.0
+size_flags_horizontal = 3
+text = "Paste"
+
+[node name="RefreshButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 2658.0
+margin_right = 1240.0
+margin_bottom = 2739.0
+size_flags_horizontal = 3
+text = "Refresh"
+
+[node name="ImportButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 2759.0
+margin_right = 1240.0
+margin_bottom = 2840.0
+size_flags_horizontal = 3
+text = "Import"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/CopyButton" to="." method="Copy"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/PasteButton" to="." method="Paste"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/RefreshButton" to="." method="Refresh"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/ImportButton" to="." method="Import"]

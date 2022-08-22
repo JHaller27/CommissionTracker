@@ -132,7 +132,7 @@ public class DayEdit : Control
 	{
 		if (!this.DoneLoading) return;
 
-		SaveUtils.SaveDay(this);
+		SaveUtils.SaveDay(this.Export());
 		this.GlobalReleaseFocus();
 	}
 
