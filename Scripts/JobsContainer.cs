@@ -23,6 +23,7 @@ public class JobsContainer : VBoxContainer
 	{
 		JobItem jobItemNode = _jobItemScene.Instance<JobItem>();
 		this.AddChild(jobItemNode);
+		this.MoveChild(jobItemNode, 0);
 		jobItemNode.Connect("DeleteMe", this, nameof(DeleteJob), new(jobItemNode));
 		jobItemNode.Connect("Changed", this, nameof(ChangeDetected));
 
@@ -52,6 +53,7 @@ public class JobsContainer : VBoxContainer
 	public List<JobItemModel> Export()
 	{
 		return this.GetChildren().Cast<JobItem>()
+			.Reverse()
 			.Select(j => j.Export())
 			.ToList();
 	}

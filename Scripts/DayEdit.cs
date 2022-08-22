@@ -57,19 +57,13 @@ public class DayEdit : Control
 	private Label TipsTotalNode => this.GetNode<Label>("Panel/MarginContainer/VBoxContainer/TotalGrid/TipsValue/Value");
 	private Label GrandTotalNode => this.GetNode<Label>("Panel/MarginContainer/VBoxContainer/TotalGrid/GrandTotalValue/Value");
 	private JobsContainer JobsContainer => this.GetNode<JobsContainer>("%JobsContainer");
-	private ScrollContainer ScrollContainer => this.GetNode<ScrollContainer>("%JobsScrollContainer");
-	private VScrollBar ScrollBar => this.ScrollContainer.GetVScrollbar();
 
 	// Private properties
 	private bool DoneLoading { get; set; } = false;
-	private int MaxScroll { get; set; }
 
 	// Methods
 	public override void _Ready()
 	{
-		this.ScrollBar.Connect("changed", this, nameof(ScrollToBottom));
-		this.MaxScroll = (int)this.ScrollBar.MaxValue;
-
 		this.Date = DateTime.Today;
 		this.CommissionPercentage = GlobalContext.Model.CommissionPercentage;
 
@@ -101,14 +95,6 @@ public class DayEdit : Control
 		this.TipsTotal = this.JobsContainer.GetJobValuesOfType(JobType.Tip).Sum();
 
 		this.GrandTotal = this.CommissionTotal + this.TipsTotal;
-	}
-
-	private void ScrollToBottom()
-	{
-		if ((int)this.ScrollBar.MaxValue == this.MaxScroll) return;
-
-		this.ScrollContainer.ScrollVertical = int.MaxValue;
-		this.MaxScroll = (int)this.ScrollBar.MaxValue;
 	}
 
 	public DayModel Export()
