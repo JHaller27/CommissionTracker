@@ -7,11 +7,11 @@ public class ImportExport : Control
 
 	public override void _Ready()
 	{
-		this.Refresh();
+		this.Export();
 	}
 
 	private void Copy() => OS.Clipboard = this.TextArea.Text;
 	private void Paste() => this.TextArea.Text = OS.Clipboard;
-	private void Refresh() => this.TextArea.Text = SaveUtils.ExportAll();
+	private void Export() => this.TextArea.Text = SaveUtils.ExportAll();
 	private void Import() => SaveUtils.ImportAll(this.TextArea.Text);
 }
